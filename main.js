@@ -2,10 +2,10 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const rpc = require('./discordRPC');
 const path = require('path');
 const fs = require('fs');
-
+let mainWindow
 function createWindow () {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+   mainWindow = new BrowserWindow({
     width: 450,
     height: 780,
     frame: true,
@@ -15,6 +15,7 @@ function createWindow () {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
+      enableRemoteModule: true
   }
   })
 
@@ -28,7 +29,6 @@ function createWindow () {
 app.whenReady().then(() => {
   createWindow()
 
-
   app.on('activate', function () {
 
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
@@ -36,6 +36,22 @@ app.whenReady().then(() => {
 })
 ipcMain.on('update',(event, value)=>{
    fs.writeFileSync('./state.json',JSON.stringify(value))
+})
+
+ipcMain.on('minimize',(event, value)=>{
+  mainWindow.minimize()
+})
+
+ipcMain.on('maximize',(event, value)=>{
+  mainWindow.maximize()
+})
+
+ipcMain.on('unmaximize',(event, value)=>{
+  mainWindow.unmaximize()
+})
+
+ipcMain.on('close',(event, value)=>{
+  mainWindow.close()
 })
 
 app.on('window-all-closed', function () {
