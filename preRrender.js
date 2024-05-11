@@ -1,34 +1,7 @@
 var ipc = require('electron').ipcRenderer;
-document.getElementById('pfpicon').src = "https://cdn.discordapp.com/app-assets/770951797103263755/777911030050193459.png"
-document.getElementById("submit-form").addEventListener("click", () => {
-    const data = {
-        appinfo: {
-            clientID: "770951797103263755"
-        },
-        info: {
-            details: document.getElementById('title').value,
-            state: document.getElementById('status').value,
-
-            largeImageText: document.getElementById('class').value,
-
-            smallImageText: document.getElementById('faction').value
-
-        },
-        zone: {
-            largeImageKey: document.getElementById('class').value.toLowerCase().replace(" ", "_")
-        },
-        class: {
-            smallImageKey: document.getElementById('faction').value.toLowerCase().replace(" ", "_")
-        },
-        modeplay: {
-            waudoing: "idle",
-            where: "y"
-        }
-    }
-    document.getElementById('titlee').innerText = data.info.details
-    document.getElementById('statuss').innerText = data.info.state
-
-    switch (data.info.largeImageText) {
+const preData = require('./state.json')
+const pfp = (item) => {
+    switch (item) {
         case "Warrior":
             document.getElementById('pfpicon').src = "https://cdn.discordapp.com/app-assets/770951797103263755/777887818687971348.png"
             break;
@@ -66,8 +39,47 @@ document.getElementById("submit-form").addEventListener("click", () => {
             document.getElementById('pfpicon').src = "https://cdn.discordapp.com/app-assets/770951797103263755/777911030050193459.png"
             break;
     }
+}
+document.getElementById('title').value = preData.info.details
+document.getElementById('status').value = preData.info.state
+document.getElementById('class').value = preData.info.largeImageText
+document.getElementById('faction').value = preData.info.smallImageText
+document.getElementById('titlee').innerText = preData.info.details
+document.getElementById('statuss').innerText = preData.info.state
+pfp(preData.info.largeImageText)
+
+document.getElementById("submit-form").addEventListener("click", () => {
+    const data = {
+        appinfo: {
+            clientID: "770951797103263755"
+        },
+        info: {
+            details: document.getElementById('title').value,
+            state: document.getElementById('status').value,
+
+            largeImageText: document.getElementById('class').value,
+
+            smallImageText: document.getElementById('faction').value
+
+        },
+        zone: {
+            largeImageKey: document.getElementById('class').value.toLowerCase().replace(" ", "_")
+        },
+        class: {
+            smallImageKey: document.getElementById('faction').value.toLowerCase().replace(" ", "_")
+        },
+        modeplay: {
+            waudoing: "idle",
+            where: "y"
+        }
+    }
+    document.getElementById('titlee').innerText = data.info.details
+    document.getElementById('statuss').innerText = data.info.state
+    pfp(data.info.largeImageText)
+
 
     ipc.send('update', data)
 
 
 });
+
