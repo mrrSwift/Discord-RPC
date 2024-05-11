@@ -32,16 +32,16 @@
     <div class="row">
 
         <div class="form-floating mb-2">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <input type="text" class="form-control" id="title" placeholder="">
           <label for="floatingInput">Title</label>
         </div>
 
         <div class="form-floating mb-2">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <input type="text" class="form-control" id="status" placeholder="">
           <label for="floatingInput">Status</label>
         </div>
 
-        <select class="form-select mb-2" aria-label="Default select example">
+        <select class="form-select mb-2" aria-label="Default select example" id="class">
           <option selected disabled>Class</option>
           <option value="Warrior">Warrior</option>
           <option value="Paladin">Paladin</option>
@@ -56,7 +56,7 @@
           <option value="Evoker">Evoker</option>
         </select>
 
-        <select class="form-select mb-2" aria-label="Default select example">
+        <select class="form-select mb-2" aria-label="Default" id="faction">
             <option selected disabled>Faction</option>
             <option value="Hord">Hord</option>
             <option value="Alliance">Alliance</option>
@@ -64,7 +64,7 @@
 
       </div>
       <div class="row">
-        <button class="btn btn-primary" type="submit">Submit form</button>
+        <a id="submit-form" class="btn btn-primary" >Submit</a>
       </div>
 </form>
 
@@ -84,5 +84,45 @@
     padding: 0rem;
   }
 </style>
+<script src="./jquery.js"></script>
+<script src="./ajax-form.js"></script>
+<script>
+const { ipcRenderer } = require('electron');
 
+$(document).ready(function() {
+  $("#submit-form").on("click", function(event) {
+
+    const data = {
+        appinfo:{
+            clientID:"770951797103263755"
+        },
+        info:{
+            details: $('#title').val() ,
+            state: $('#status').val(),
+           
+           largeImageText:$('#class').val() ,
+           
+           smallImageText: $('#faction').val()
+           
+        },
+        zone:{
+            largeImageKey:$('#class').val().toLowerCase()
+        },
+        class:{
+            smallImageKey:$('#faction').val().toLowerCase()
+        },
+        modeplay:{
+            waudoing:"idle",
+            where:"y"
+        }
+    }
+
+    console.log(
+        "454"
+    )
+
+  });
+});
+
+</script>
 </html>
