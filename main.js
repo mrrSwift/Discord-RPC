@@ -1,13 +1,16 @@
-const { app, BrowserWindow } = require('electron')
-const rpc = require('./discordRPC')
+const { app, BrowserWindow, ipcMain } = require('electron');
+const rpc = require('./discordRPC');
+const path = require('path');
+const fs = require('fs');
 
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1280,
+    height: 720,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      contextIsolation: false,
   }
   })
 
@@ -24,11 +27,15 @@ function createWindow () {
 app.whenReady().then(() => {
   createWindow()
 
+
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
+})
+ipcMain.on('update',(event, value)=>{
+   fs.writeFileSync('./state.json',JSON.stringify(value))
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common

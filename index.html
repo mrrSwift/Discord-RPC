@@ -14,63 +14,63 @@
     <div class="row">
       <div class="col justify-content-center m-4">
         <div class="row">
-          <div class="col-4" style="
+          <div class="col-4"  style="
                     display: flex;
                     justify-content: flex-end;">
-            <img src="https://cdn.discordapp.com/app-assets/770951797103263755/777887826855198761.png" alt="dis" width="100" style="border-radius: 0.7rem;">
+            <img id="image" src="https://cdn.discordapp.com/app-assets/770951797103263755/777887826855198761.png" alt="dis" width="100" style="border-radius: 0.7rem;">
           </div>
           <div class="col-8 align-self-start">
             <div class="row align-items-start" style="text-align: left;">
-              <h6 class="pt-1">World of Warcraft</h6>
-              <p>swift</p>
-              <p>quest</p>
+              <h6  class="pt-1">World of Warcraft</h6>
+              <p id="titlee">swift</p>
+              <p id="statuss">quest</p>
             </div>
           </div>
         </div>
       </div>
-<form>
-    <div class="row">
+      <form>
+        <div class="row">
 
-        <div class="form-floating mb-2">
-          <input type="text" class="form-control" id="title" placeholder="">
-          <label for="floatingInput">Title</label>
-        </div>
+          <div class="form-floating mb-2">
+            <input type="text" class="form-control" id="title" placeholder="">
+            <label for="floatingInput">Title</label>
+          </div>
 
-        <div class="form-floating mb-2">
-          <input type="text" class="form-control" id="status" placeholder="">
-          <label for="floatingInput">Status</label>
-        </div>
+          <div class="form-floating mb-2">
+            <input type="text" class="form-control" id="status" placeholder="">
+            <label for="floatingInput">Status</label>
+          </div>
 
-        <select class="form-select mb-2" aria-label="Default select example" id="class">
-          <option selected disabled>Class</option>
-          <option value="Warrior">Warrior</option>
-          <option value="Paladin">Paladin</option>
-          <option value="Hunter">Hunter</option>
-          <option value="Rogue">Rogue</option>
-          <option value="Priest">Priest</option>
-          <option value="Shaman">Shaman</option>
-          <option value="Mage">Mage</option>
-          <option value="Druid">Druid</option>
-          <option value="Demon Hunter">Demon Hunter</option>
-          <option value="Death Knight">Death Knight</option>
-          <option value="Evoker">Evoker</option>
-        </select>
+          <select class="form-select mb-2" aria-label="Default select example" id="class">
+            <option selected disabled>Class</option>
+            <option value="Warrior">Warrior</option>
+            <option value="Paladin">Paladin</option>
+            <option value="Hunter">Hunter</option>
+            <option value="Rogue">Rogue</option>
+            <option value="Priest">Priest</option>
+            <option value="Shaman">Shaman</option>
+            <option value="Mage">Mage</option>
+            <option value="Druid">Druid</option>
+            <option value="Demon Hunter">Demon Hunter</option>
+            <option value="Death Knight">Death Knight</option>
+            <option value="Evoker">Evoker</option>
+          </select>
 
-        <select class="form-select mb-2" aria-label="Default" id="faction">
+          <select class="form-select mb-2" aria-label="Default" id="faction">
             <option selected disabled>Faction</option>
             <option value="Hord">Hord</option>
             <option value="Alliance">Alliance</option>
           </select>
 
-      </div>
-      <div class="row">
-        <a id="submit-form" class="btn btn-primary" >Submit</a>
-      </div>
-</form>
-
+        </div>
+        <div class="row">
+          <a id="submit-form" class="btn btn-primary">Submit</a>
+        </div>
+      </form>
     </div>
 
 </body>
+<script src="./preRrender.js"></script>
 <style>
   body {
     background-color: rgb(43, 42, 42);
@@ -80,49 +80,10 @@
   p {
     margin-bottom: 0px;
   }
+
   .form-floating {
     padding: 0rem;
   }
 </style>
-<script src="./jquery.js"></script>
-<script src="./ajax-form.js"></script>
-<script>
-const { ipcRenderer } = require('electron');
 
-$(document).ready(function() {
-  $("#submit-form").on("click", function(event) {
-
-    const data = {
-        appinfo:{
-            clientID:"770951797103263755"
-        },
-        info:{
-            details: $('#title').val() ,
-            state: $('#status').val(),
-           
-           largeImageText:$('#class').val() ,
-           
-           smallImageText: $('#faction').val()
-           
-        },
-        zone:{
-            largeImageKey:$('#class').val().toLowerCase()
-        },
-        class:{
-            smallImageKey:$('#faction').val().toLowerCase()
-        },
-        modeplay:{
-            waudoing:"idle",
-            where:"y"
-        }
-    }
-
-    console.log(
-        "454"
-    )
-
-  });
-});
-
-</script>
 </html>
