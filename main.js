@@ -8,7 +8,7 @@ function createWindow () {
   const mainWindow = new BrowserWindow({
     width: 450,
     height: 780,
-    frame: false,
+    frame: true,
     autoHideMenuBar: true,
     titleBarStyle: 'hidden',
     trafficLightPosition: { x: 10, y: 10 },
