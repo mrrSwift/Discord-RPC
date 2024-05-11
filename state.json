@@ -1,0 +1,24 @@
+{
+    "appinfo":{
+        "clientID":"770951797103263755"
+    },
+    "info":{
+        "details":"Swiftllly" ,
+        "state": "Quest",
+       
+       "largeImageText":"Mage" ,
+       
+       "smallImageText": "Hord"
+       
+    },
+    "zone":{
+        "largeImageKey":"mage" 
+    },
+    "class":{
+        "smallImageKey":"hord" 
+    },
+    "modeplay":{
+        "waudoing":"idle",
+        "where":"y"
+    }
+}
