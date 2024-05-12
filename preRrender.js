@@ -1,5 +1,10 @@
-var ipc = require('electron').ipcRenderer;
-const preData = require('./state.json')
+const init = (async ()=>{
+    var ipc = require('electron').ipcRenderer;
+const { QuickDB } = require("quick.db");
+const db = new QuickDB();
+let preData = await db.get("char")
+ 
+console.log(preData)
 const pfp = (item) => {
     switch (item) {
         case "Warrior":
@@ -50,6 +55,7 @@ pfp(preData.info.largeImageText)
 
 document.getElementById("submit-form").addEventListener("click", () => {
     const data = {
+        id:"sw",
         appinfo: {
             clientID: "770951797103263755"
         },
@@ -115,3 +121,5 @@ function handleWindowControls() {
 
 
 }
+})
+init()
