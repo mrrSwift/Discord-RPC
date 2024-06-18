@@ -22,7 +22,6 @@ function createWindow() {
   win.loadFile('index.html')
 }
 
-
 app.whenReady().then(async () => {
   createWindow()
   manager()
